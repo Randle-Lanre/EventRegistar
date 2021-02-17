@@ -7,12 +7,13 @@ namespace RegistarApi.Controllers
     [ApiController]
     public class RegistarController : ControllerBase
     {
-        // GET
-        // public IActionResult Index()
-        // {
-        //     return View();
-        // }
+        private readonly ApplicationDbContext _context;
 
+        public RegistarController( ApplicationDbContext context)
+        {
+            _context = context;
+
+        }
 
         [HttpGet]
         public ActionResult GetRegistar()
@@ -23,7 +24,11 @@ namespace RegistarApi.Controllers
         [HttpPost]
         public async Task<ActionResult<EventRegistar>> AddToRegistar( EventRegistar anEvent)
         {
-            return Ok();
+
+            _context.EventRegistars.Add(anEvent);
+           await _context.SaveChangesAsync();
+
+           return CreatedAtAction(nameof(GetRegistar), new {id = anEvent}, anEvent);
         }
         
     }
