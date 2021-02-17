@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using RegistarApi.Model;
 
 namespace RegistarApi.Controllers
 {
@@ -19,7 +21,7 @@ namespace RegistarApi.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddToRegistar()
+        public async Task<ActionResult<EventRegistar>> AddToRegistar( EventRegistar anEvent)
         {
             return Ok();
         }
