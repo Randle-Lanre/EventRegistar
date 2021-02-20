@@ -4,6 +4,7 @@ using RegistarApi.Model;
 
 namespace RegistarApi.Controllers
 {
+    [Route("api/[controller]")]
     [ApiController]
     public class RegistarController : ControllerBase
     {
