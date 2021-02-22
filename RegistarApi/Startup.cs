@@ -30,6 +30,17 @@ namespace RegistarApi
         {
             services.AddDbContext<ApplicationDbContext>(dbToUse => dbToUse.UseSqlServer(Configuration.GetConnectionString("EventRegistarDbContext")));
 
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder.WithOrigins("http://localhost:4200", "http://www.localhost:4200").AllowAnyHeader();
+                    }
+                    );
+            }
+               );
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -40,16 +51,21 @@ namespace RegistarApi
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+
+          
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "RegistarApi v1"); c.RoutePrefix = string.Empty; });
+                app.UseSwaggerUI(c =>
+                
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "RegistarApi v1"));
             }
 
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseCors();
 
             app.UseAuthorization();
 

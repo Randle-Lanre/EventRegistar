@@ -15,7 +15,9 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class RegistarServiceService {
-apiUrl = 'api/events'
+readonly apiUrl = 'https://localhost:44309/api/Registar';
+
+registrationInfo: Registar
 
 
   constructor(private http: HttpClient) { }
@@ -23,6 +25,6 @@ apiUrl = 'api/events'
 
 
   addUserToRegistar( registar: Registar): Observable<Registar>{
-    return this.http.post<Registar>(this.apiUrl, registar, httpOptions);
+    return this.http.post<Registar>(this.apiUrl, registar);
   }
 }

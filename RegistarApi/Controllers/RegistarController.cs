@@ -1,11 +1,12 @@
 ﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RegistarApi.Model;
 
 namespace RegistarApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/Registar")]
     [ApiController]
     public class RegistarController : ControllerBase
     {
@@ -27,6 +28,7 @@ namespace RegistarApi.Controllers
             return NotFound();
         }
 
+        
         [HttpPost]
         public async Task<ActionResult<EventRegistar>> AddToRegistar( EventRegistar anEvent)
         {

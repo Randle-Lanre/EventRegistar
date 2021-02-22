@@ -1,5 +1,5 @@
 export interface Registar {
-    firstName: string;
-    lastName: string;
-    userComment: string;
+    FirstName: string;
+    LastName: string;
+    ParticipantComment: string;
 }
