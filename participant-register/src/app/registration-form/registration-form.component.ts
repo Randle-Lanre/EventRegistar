@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Registar } from '../Services/registar';
 import { RegistarServiceService } from '../Services/registar-service.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-registration-form',
@@ -11,7 +12,8 @@ import { RegistarServiceService } from '../Services/registar-service.service';
 export class RegistrationFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
-    private registarService: RegistarServiceService
+    private registarService: RegistarServiceService,
+    private toastr: ToastrService
   ) {}
 
   userRegistrationForm = this.fb.group({
@@ -24,7 +26,8 @@ export class RegistrationFormComponent implements OnInit {
   onSubmit() {
     this.registarService.addUserToRegistar(this.userRegistrationForm.value).subscribe(
       (res) => {
-        this.userRegistrationForm.reset();
+        this.toastr.success('form submitted', 'success!')
+        this.userRegistrationForm.reset(this.userRegistrationForm);
       },
 
       (err) => {
