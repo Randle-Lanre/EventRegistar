@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Registar } from '../Services/registar';
+//import { Registar } from '../Services/registar';
 import { RegistarServiceService } from '../Services/registar-service.service';
 import { ToastrService } from 'ngx-toastr';
 

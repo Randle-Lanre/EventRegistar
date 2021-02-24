@@ -24,9 +24,6 @@ import { AppRoutingModule } from './app-routing.module';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
-      timeOut: 1000,
-      positionClass: 'toast-top-right',
-      preventDuplicates: true
     }),
   ],
   providers: [],

@@ -5,7 +5,7 @@
     <form [formGroup]="userRegistrationForm" (ngSubmit)="onSubmit()" class="row g-3 "  >
         <div class="row g-3 pb-5">
             <div class="col">
-                <input type="text" formControlName="FirstName" class="form-control" placeholder="First Name" aria-label="First name" required>
+                <input type="text" formControlName="FirstName"  class="form-control" placeholder="First Name" aria-label="First name" required>
 
             </div>
 
@@ -20,7 +20,7 @@
         </div>
 
         <div class="d-grid gap-2 col-6 mx-auto">
-            <button  type="submit" class="btn btn-outline-primary btn-lg" >save</button>
+            <button  type="submit" class="btn btn-outline-primary btn-lg" [disabled]="userRegistrationForm.invalid" >save</button>
         </div>
 
     </form>
