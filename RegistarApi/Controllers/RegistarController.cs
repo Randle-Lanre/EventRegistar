@@ -17,6 +17,16 @@ namespace RegistarApi.Controllers
             _context = context;
 
         }
+        
+        //fetch all participants 
+
+        [HttpGet]
+        public async Task<ActionResult<EventRegistar>> GetAllParticipants()
+        {
+            var participants = await _context.EventRegistars.ToListAsync();
+
+            return Ok(participants);
+        }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<EventRegistar>> GetRegistar(int id)
