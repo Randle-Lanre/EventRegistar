@@ -19,5 +19,6 @@ namespace RegistarApi.Model
         [StringLength(50)]
         public string ParticipantComment { get; set; }
         
+
     }
 }
