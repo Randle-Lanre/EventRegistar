@@ -7,22 +7,22 @@ using RegistarApi.Model;
 namespace Tests
 {
     [TestClass]
-    public class UnitTest1 : BaseTest
+    public class ParticipantsControllerTest : BaseTest
     {
         [TestMethod]
-        public async Task TestMethod1() 
+        public async Task GetAllParticipantsInDb() 
         {
             
             //Arrange
-            var database = Guid.NewGuid().ToString();
-            var context = BuildContext(database);
+            var databaseName = Guid.NewGuid().ToString();
+            var context = BuildContext(databaseName);
 
             context.EventRegistars.Add(new EventRegistar()
-                {FirstName = "Tommy", LastName = "Micheal", ParticipantComment = "The sho was very good"});
+                {FirstName = "Tommy", LastName = "Micheal", ParticipantComment = "The show was very good"});
             context.SaveChanges();
 
 
-            var context2 = BuildContext(database);
+            var context2 = BuildContext(databaseName);
 
 
             //Act 
@@ -31,12 +31,12 @@ namespace Tests
 
 
             //Assert
-            var Id = 1;
+            int id = 1;
 
-            var participants =  response.Value;
+            var participants =  response.Value.Id;
             
             
-            Assert.AreEqual(Id, participants.Id);
+            Assert.AreEqual(id, participants);
 
             
         }
