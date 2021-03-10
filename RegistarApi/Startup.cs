@@ -12,7 +12,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+
 using RegistarApi.Model;
+
 
 namespace RegistarApi
 {
@@ -29,6 +31,7 @@ namespace RegistarApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(dbToUse => dbToUse.UseSqlServer(Configuration.GetConnectionString("EventRegistarDbContext")));
+            // services.AddScoped<IRegisterParticipants, RegisterParticipants>();
 
             services.AddCors(options =>
             {

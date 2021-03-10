@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+
 using RegistarApi.Model;
 
 namespace RegistarApi.Controllers
@@ -10,11 +11,13 @@ namespace RegistarApi.Controllers
     [ApiController]
     public class RegistarController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;  
+       
 
-        public RegistarController( ApplicationDbContext context)
+        public RegistarController( ApplicationDbContext context )
         {
             _context = context;
+            
 
         }
         
@@ -24,18 +27,24 @@ namespace RegistarApi.Controllers
         public async Task<ActionResult<EventRegistar>> GetAllParticipants()
         {
             var participants = await _context.EventRegistars.ToListAsync();
-
+            
             return Ok(participants);
+            
+           
+
+
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<EventRegistar>> GetRegistar(int id)
         {
             var anEvent = await _context.EventRegistars.FindAsync(id);
-
+            
             if (anEvent != null)
                 return Ok(anEvent);
             return NotFound();
+            
+            
         }
 
         
@@ -45,8 +54,10 @@ namespace RegistarApi.Controllers
 
             _context.EventRegistars.Add(anEvent);
            await _context.SaveChangesAsync();
-
+           
            return CreatedAtAction(nameof(GetRegistar), new {id = anEvent}, anEvent);
+           
+           
         }
 
 
@@ -54,12 +65,14 @@ namespace RegistarApi.Controllers
         public async Task<IActionResult> DeleteRegistarItem(int id)
         {
             var registarItem = await _context.EventRegistars.FindAsync(id);
-
+            
             if (registarItem == null)
                 return StatusCode(404);
             _context.EventRegistars.Remove(registarItem);
             await _context.SaveChangesAsync();
             return NoContent();
+
+           
         }
 
         
@@ -68,9 +81,9 @@ namespace RegistarApi.Controllers
         {
             if (id != eventRegistar.Id)
                 return BadRequest();
-
+            
             _context.Entry(eventRegistar).State = EntityState.Modified;
-
+            
             try
             {
                 await _context.SaveChangesAsync();
@@ -78,10 +91,13 @@ namespace RegistarApi.Controllers
             catch (DbUpdateConcurrencyException)
             {
                 return NotFound();
-
+            
             }
-
+            
             return NoContent();
+           
+
+
         }
         
     }
