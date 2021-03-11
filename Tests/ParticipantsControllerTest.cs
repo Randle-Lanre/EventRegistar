@@ -1,44 +1,59 @@
-using System;
-using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using RegistarApi.Controllers;
 using RegistarApi.Model;
+using Xunit;
 
 namespace Tests
 {
-    [TestClass]
-    public class ParticipantsControllerTest : BaseTest
+    public class ParticipantsControllerTest  
     {
-        [TestMethod]
-        public async Task GetAllParticipantsInDb() 
+
+        protected ParticipantsControllerTest(DbContextOptions<ApplicationDbContext> contextOptions )
         {
+            contextOptions = contextOptions;
             
-            //Arrange
-            var databaseName = Guid.NewGuid().ToString();
-            var context = BuildContext(databaseName);
+            Seed();
 
-            context.EventRegistars.Add(new EventRegistar()
-                {FirstName = "Tommy", LastName = "Micheal", ParticipantComment = "The show was very good"});
-            context.SaveChanges();
+        }
+        
+        protected  DbContextOptions<ApplicationDbContext> ContextOptions { get; }
+
+        private void Seed()
+        {
+            using (var context = new ApplicationDbContext(ContextOptions))
+            {
+                context.Database.EnsureDeleted();
+                context.Database.EnsureCreated();
+
+                var singleEvent = new EventRegistar( );
+                singleEvent.Id = 1;
+                singleEvent.FirstName = "Cat";
+                singleEvent.LastName = "Will";
+                singleEvent.ParticipantComment = "not too bad";
 
 
-            var context2 = BuildContext(databaseName);
+
+                var secondEvent = new EventRegistar();
+                secondEvent.Id = 2;
+                secondEvent.FirstName = "canna";
+                secondEvent.LastName = "Cane";
+                secondEvent.ParticipantComment = "lool";
+                
+                
+                context.AddRange(singleEvent, secondEvent);
+                context.SaveChanges();
 
 
-            //Act 
-            var controller = new RegistarController(context2);
-            var response = await controller.GetAllParticipants();
 
 
-            //Assert
-            int id = 1;
 
-            var participants =  response.Value.Id;
-            
-            
-            Assert.AreEqual(id, participants);
-
+            }
             
         }
+      
+        
+        
+
     }
 }
