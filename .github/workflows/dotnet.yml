@@ -18,8 +18,9 @@ jobs:
       with:
         dotnet-version: 5.0.x
     - name: Restore dependencies
+      working-directory: ./RegistarApi
       run: dotnet restore
-      working-directory: /RegistarApi
+ 
     - name: Build
       run: dotnet build --no-restore
     - name: Test
