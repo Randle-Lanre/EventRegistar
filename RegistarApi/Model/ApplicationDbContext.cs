@@ -5,7 +5,8 @@ namespace RegistarApi.Model
 {
     public class ApplicationDbContext : DbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options): base(options)
+        //removed DbContextOptions<ApplicationDbContext>
+        public ApplicationDbContext(DbContextOptions options): base(options)
         {
             
             
