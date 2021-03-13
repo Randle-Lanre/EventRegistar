@@ -7,13 +7,25 @@
       <th scope="col"> Comment </th>
     </tr>
   </thead>
- <!-- TODO : replace placeholder with an NgIf to fetch from Db through Api call  -->
+ <!-- TODO : Test newly created call  -->
   <tbody>
     <tr>
       <th scope="row">1</th>
-      <td>Kehinde</td>
-      <td>Randle</td>
+      <td>Tony</td>
+      <td>Montanna</td>
       <td>the program was an interesting one</td>
     </tr>
   </tbody>
+
+<!-- TODO: fix fetch, create a different type for fetching from db -->
+
+  <tbody *ngFor="let participant of participants">
+    <tr>
+      <th scope="row"></th>
+      <td>{{participant.FirstName}}</td>
+      <td>{{participant.LastName}}</td>
+      <td>{{participant.ParticipantComment}}</td>
+    </tr>
+  </tbody>
 </table>
+<button (click)="listAllParticipants()">Fetch</button>

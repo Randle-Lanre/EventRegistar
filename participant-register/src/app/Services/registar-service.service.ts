@@ -27,4 +27,9 @@ registrationInfo: Registar
   addUserToRegistar( registar: Registar): Observable<Registar>{
     return this.http.post<Registar>(this.apiUrl, registar);
   }
+
+ getListOfParticipants ():Observable<Registar[]> {
+   return this.http.get<Registar[]>(this.apiUrl )
+ }
+
 }
