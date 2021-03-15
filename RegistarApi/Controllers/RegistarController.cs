@@ -51,7 +51,7 @@ namespace RegistarApi.Controllers
         [HttpPost]
         public async Task<ActionResult<EventRegistar>> AddToRegistar( EventRegistar anEvent)
         {
-
+        
             _context.EventRegistars.Add(anEvent);
            await _context.SaveChangesAsync();
            

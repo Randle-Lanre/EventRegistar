@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { Registar } from './registar';
+import { Participants } from './participants';
 
 
 const httpOptions = {
@@ -28,8 +29,8 @@ registrationInfo: Registar
     return this.http.post<Registar>(this.apiUrl, registar);
   }
 
- getListOfParticipants ():Observable<Registar[]> {
-   return this.http.get<Registar[]>(this.apiUrl )
+ getListOfParticipants ():Observable<Participants[]> {
+   return this.http.get<Participants[]>(this.apiUrl, httpOptions )
  }
 
 }

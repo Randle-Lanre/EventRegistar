@@ -19,9 +19,9 @@
 
 <!-- TODO: fix fetch, create a different type for fetching from db -->
 
-  <tbody *ngFor="let participant of participants">
+  <tbody *ngFor="let participant of listAllParticipants()">
     <tr>
-      <th scope="row"></th>
+      <th scope="row">{{participant.Id}}</th>
       <td>{{participant.FirstName}}</td>
       <td>{{participant.LastName}}</td>
       <td>{{participant.ParticipantComment}}</td>

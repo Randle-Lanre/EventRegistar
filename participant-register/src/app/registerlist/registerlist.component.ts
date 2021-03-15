@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RegistarServiceService } from '../Services/registar-service.service';
-import { Registar} from '../Services/registar'
+import { Participants} from '../Services/participants'
 
 @Component({
   selector: 'app-registerlist',
@@ -11,11 +11,12 @@ export class RegisterlistComponent implements OnInit {
 
   // TODO: use a different type to fecth from Db, change in service also
 
-  participants: Registar[];
+  participants: Participants[];
 
   constructor(private registarService: RegistarServiceService) { }
 
   ngOnInit(): void {
+    
   }
 
   listAllParticipants(): void{
