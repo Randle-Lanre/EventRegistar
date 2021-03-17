@@ -30,7 +30,9 @@ namespace RegistarApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(dbToUse => dbToUse.UseSqlServer(Configuration.GetConnectionString("EventRegistarDbContext")));
+          //  services.AddDbContext<ApplicationDbContext>(dbToUse => dbToUse.UseSqlServer(Configuration.GetConnectionString("EventRegistarDbContext")));
+          services.AddDbContext<ApplicationDbContext>(db =>
+              db.UseSqlServer(Configuration.GetConnectionString("EventRegistarDbContext")));
             // services.AddScoped<IRegisterParticipants, RegisterParticipants>();
 
             services.AddCors(options =>

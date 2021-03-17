@@ -19,13 +19,13 @@
 
 <!-- TODO: fix fetch, create a different type for fetching from db -->
 
-  <tbody *ngFor="let participant of listAllParticipants()">
+  <tbody *ngFor="let participant of registarService.registrationResults">
     <tr>
-      <th scope="row">{{participant.Id}}</th>
-      <td>{{participant.FirstName}}</td>
-      <td>{{participant.LastName}}</td>
-      <td>{{participant.ParticipantComment}}</td>
+      <th scope="row">{{participant.id}}</th>
+      <td>{{participant.firstName}}</td>
+      <td>{{participant.lastName}}</td>
+      <td>{{participant.participantComment}}</td>
     </tr>
   </tbody>
 </table>
-<button (click)="listAllParticipants()">Fetch</button>
+

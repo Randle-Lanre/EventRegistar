@@ -19,6 +19,7 @@ export class RegistarServiceService {
 readonly apiUrl = 'https://localhost:44309/api/Registar';
 
 registrationInfo: Registar
+registrationResults: Registar[]
 
 
   constructor(private http: HttpClient) { }
@@ -29,8 +30,12 @@ registrationInfo: Registar
     return this.http.post<Registar>(this.apiUrl, registar);
   }
 
- getListOfParticipants ():Observable<Participants[]> {
-   return this.http.get<Participants[]>(this.apiUrl, httpOptions )
- }
+//  getListOfParticipants ():Observable<Participants[]> {
+//    return this.http.get<Participants[]>(this.apiUrl, httpOptions )
+//  }
+
+ getListOfParticipants () {
+  return this.http.get(this.apiUrl ).toPromise().then(res => this.registrationResults = res as Registar[]);
+}
 
 }
