@@ -38,4 +38,16 @@ registrationResults: Registar[]
   return this.http.get(this.apiUrl ).toPromise().then(res => this.registrationResults = res as Registar[]);
 }
 
+// TODO: confirm if a type with ID needs to be returned, for now i am using a type of participant with ID
+updateListOfParticipants(participant: Participants ){
+  return this.http.put<Participants>(this.apiUrl, participant);
+}
+
+
+deleteAParticipant(id: number): Observable<{}>{
+  const url = `${this.apiUrl}/${id}`;
+  return this.http.delete(url, httpOptions);
+}
+
+
 }

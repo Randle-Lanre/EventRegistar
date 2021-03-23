@@ -15,3 +15,5 @@ namespace RegistarApi.Model
         public DbSet<EventRegistar> EventRegistars { get; set; }
     }
 }
+
+ // might need to add seed data
