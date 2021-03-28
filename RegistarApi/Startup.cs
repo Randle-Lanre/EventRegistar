@@ -40,7 +40,8 @@ namespace RegistarApi
                 options.AddDefaultPolicy(
                     builder =>
                     {
-                        builder.WithOrigins("http://localhost:4200", "http://www.localhost:4200").AllowAnyHeader();
+                        builder.WithOrigins("http://localhost:4200", "http://www.localhost:4200").AllowAnyHeader()
+                            .WithMethods("GET", "POST", "DELETE", "PUT");
                     }
                     );
             }

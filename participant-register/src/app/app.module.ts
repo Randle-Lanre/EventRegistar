@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { RegistrationFormComponent } from './registration-form/registration-form.component';
 import { RegisterlistComponent } from './registerlist/registerlist.component';
 import { AppRoutingModule } from './app-routing.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { AppRoutingModule } from './app-routing.module';
     BrowserAnimationsModule,
     ToastrModule.forRoot({
     }),
+    FontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

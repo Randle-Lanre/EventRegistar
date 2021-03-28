@@ -61,7 +61,7 @@ namespace RegistarApi.Controllers
         }
 
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteRegistarItem(int id)
         {
             var registarItem = await _context.EventRegistars.FindAsync(id);
@@ -70,9 +70,9 @@ namespace RegistarApi.Controllers
                 return StatusCode(404);
             _context.EventRegistars.Remove(registarItem);
             await _context.SaveChangesAsync();
-            return NoContent();
+            return Ok();
 
-           
+
         }
 
         

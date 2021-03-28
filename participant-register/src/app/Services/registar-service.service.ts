@@ -47,7 +47,9 @@ updateListOfParticipants(participant: Participants ){
 deleteAParticipant(id: number): Observable<{}>{
   const url = `${this.apiUrl}/${id}`;
   return this.http.delete(url, httpOptions);
+
 }
 
+//return this.http.put(`${this.apiurl}/${this.registrationinfo.id}`, this.registrationinfo)
 
 }

@@ -5,6 +5,7 @@
       <th scope="col">First Name</th>
       <th scope="col">Last Name</th>
       <th scope="col"> Comment </th>
+      <th scope="col"> Delete </th>
     </tr>
   </thead>
  <!-- TODO : Test newly created call  -->
@@ -26,6 +27,7 @@
       <td>{{participant.firstName}}</td>
       <td>{{participant.lastName}}</td>
       <td>{{participant.participantComment}}</td>
+      <fa-icon [icon]="faUsers" [styles]="{'color':'red'}" (click)="onDelete(participant.id)"></fa-icon>
     </tr>
   </tbody>
 </table>
