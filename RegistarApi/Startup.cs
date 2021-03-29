@@ -47,6 +47,14 @@ namespace RegistarApi
             }
                );
 
+            services.AddAntiforgery(options =>
+            {
+
+                options.HeaderName = null; //consider only form data 
+                options.SuppressXFrameOptionsHeader = false;
+
+            });
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
