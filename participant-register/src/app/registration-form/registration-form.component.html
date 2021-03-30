@@ -1,7 +1,9 @@
 
-<h1 class="position-absolute top-0 start-50 translate-middle mt-5 pt-5"> Attendance Form</h1>
 
-<div class="conatiner position-absolute top-50 start-50 translate-middle">
+
+<h1 class="position-absolute top-0 start-50 translate-middle mt-5 pt-5 "> Attendance Form</h1>
+
+<div class="conatiner position-absolute top-50 start-50 translate-middle ">
     <form [formGroup]="userRegistrationForm" (ngSubmit)="onSubmit()" class="row g-3 "  >
         <div class="row g-3 pb-5">
             <div class="col">
@@ -21,7 +23,9 @@
 
         <div class="d-grid gap-2 col-6 mx-auto">
             <button  type="submit" class="btn btn-outline-primary btn-lg" [disabled]="userRegistrationForm.invalid" >save</button>
+            <button class="btn btn-primary" type="button" routerLink="/registerlist"> &#8595; list</button>
         </div>
+
 
     </form>
 </div>

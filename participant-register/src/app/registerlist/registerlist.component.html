@@ -1,34 +1,40 @@
-<table>
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">First Name</th>
-      <th scope="col">Last Name</th>
-      <th scope="col"> Comment </th>
-      <th scope="col"> Delete </th>
-    </tr>
-  </thead>
- <!-- TODO : Test newly created call  -->
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Tony</td>
-      <td>Montanna</td>
-      <td>the program was an interesting one</td>
-    </tr>
-  </tbody>
+<div class="container pt-5">
+  <h2> Participant List</h2>
+  <table class="table table-dark table-striped table-hover">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col"> Comment </th>
+        <th scope="col"> Delete </th>
+      </tr>
+    </thead>
+   <!-- TODO : Test newly created call  -->
+    <tbody *ngIf="registarService.registrationResults == null">
+      <tr>
+        <th scope="row">1</th>
+        <td>Tony</td>
+        <td>Montanna</td>
+        <td>the program was an interesting one</td>
+      </tr>
+    </tbody>
 
-<!-- TODO: add a button for updating this list and deleting this item-->
-<!-- TODO: implement graph of participants overtime -->
+  <!-- TODO: add a button for updating this list and deleting this item-->
+  <!-- TODO: implement graph of participants overtime -->
 
-  <tbody *ngFor="let participant of registarService.registrationResults">
-    <tr>
-      <th scope="row">{{participant.id}}</th>
-      <td>{{participant.firstName}}</td>
-      <td>{{participant.lastName}}</td>
-      <td>{{participant.participantComment}}</td>
-      <fa-icon [icon]="faUsers" [styles]="{'color':'red'}" (click)="onDelete(participant.id)"></fa-icon>
-    </tr>
-  </tbody>
-</table>
+    <tbody *ngFor="let participant of registarService.registrationResults">
+      <tr>
+        <th scope="row">{{participant.id}}</th>
+        <td>{{participant.firstName}}</td>
+        <td>{{participant.lastName}}</td>
+        <td>{{participant.participantComment}}</td>
+        <td><fa-icon [icon]="faUsers"  [styles]="{'color':'red'}" (click)="onDelete(participant.id)"></fa-icon></td>
 
+      </tr>
+    </tbody>
+  </table>
+  <button class="btn btn-secondary" type="button" routerLink="/"> &#8592; Back to Form</button>
+
+
+</div>

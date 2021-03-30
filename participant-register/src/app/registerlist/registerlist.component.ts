@@ -15,6 +15,7 @@ export class RegisterlistComponent implements OnInit {
 
   participants: Participants;
   faUsers = faUserMinus;
+  numbering: number;
 
   constructor(
     public registarService: RegistarServiceService,
@@ -25,6 +26,7 @@ export class RegisterlistComponent implements OnInit {
     this.registarService.getListOfParticipants();
     console.log(this.registarService.getListOfParticipants());
     // this.listAllParticipants();
+   // this.numbering;
   }
 
   onDelete(id: number) {
