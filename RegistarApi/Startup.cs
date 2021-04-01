@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -35,6 +36,11 @@ namespace RegistarApi
               db.UseSqlServer(Configuration.GetConnectionString("EventRegistarDbContext")));
             // services.AddScoped<IRegisterParticipants, RegisterParticipants>();
 
+            services.AddDefaultIdentity<ApplicationUser>().AddEntityFrameworkStores<ApplicationDbContext>();
+            
+            services.AddAuthentication()
+                .AddIdentityServerJwt();
+            
             services.AddCors(options =>
             {
                 options.AddDefaultPolicy(
@@ -80,6 +86,8 @@ namespace RegistarApi
 
             app.UseRouting();
             app.UseCors();
+            // app.UseAuthentication();
+            // app.UseIdentityServer();
 
             app.UseAuthorization();
 
