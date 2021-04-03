@@ -12,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
 using RegistarApi.Model;
@@ -34,12 +35,7 @@ namespace RegistarApi
           //  services.AddDbContext<ApplicationDbContext>(dbToUse => dbToUse.UseSqlServer(Configuration.GetConnectionString("EventRegistarDbContext")));
           services.AddDbContext<ApplicationDbContext>(db =>
               db.UseSqlServer(Configuration.GetConnectionString("EventRegistarDbContext")));
-            // services.AddScoped<IRegisterParticipants, RegisterParticipants>();
-
-            services.AddDefaultIdentity<ApplicationUser>().AddEntityFrameworkStores<ApplicationDbContext>();
             
-            services.AddAuthentication()
-                .AddIdentityServerJwt();
             
             services.AddCors(options =>
             {
@@ -51,7 +47,17 @@ namespace RegistarApi
                     }
                     );
             }
+                
                );
+            services.AddAuthentication("Bearer").AddJwtBearer("Bearer", options =>
+            {
+                options.Authority = "https://localhost:5001";
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateAudience = false
+                };
+            });
+            
 
             services.AddAntiforgery(options =>
             {
@@ -71,6 +77,7 @@ namespace RegistarApi
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            
 
           
             if (env.IsDevelopment())
@@ -86,8 +93,8 @@ namespace RegistarApi
 
             app.UseRouting();
             app.UseCors();
-            // app.UseAuthentication();
-            // app.UseIdentityServer();
+            app.UseAuthentication();
+           
 
             app.UseAuthorization();
 
