@@ -12,7 +12,7 @@ namespace IdentityServer
         public static IEnumerable<ApiScope> ApiScopes =>
             new List<ApiScope>
             {
-                new ApiScope("api1", "RegistarApi")
+                new ApiScope("api11", "RegistarApi")
             };
         public static IEnumerable<Client> Clients =>
             new List<Client>
@@ -27,7 +27,7 @@ namespace IdentityServer
                     {
                         new Secret("secret".Sha256())
                     },
-                    AllowedScopes = {"api1"}
+                    AllowedScopes = {"api11"}
 
                 }
             };

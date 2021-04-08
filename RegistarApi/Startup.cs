@@ -57,6 +57,15 @@ namespace RegistarApi
                     ValidateAudience = false
                 };
             });
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("ApiScope", policy =>
+                {
+                    policy.RequireAuthenticatedUser();
+                    policy.RequireClaim("scope", "api11");
+                });
+
+            });
             
 
             services.AddAntiforgery(options =>
@@ -100,7 +109,8 @@ namespace RegistarApi
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                //setting up policy for all API endpoints 
+                endpoints.MapControllers().RequireAuthorization("ApiScope");
             });
         }
     }
