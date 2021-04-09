@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -7,7 +8,9 @@ using RegistarApi.Model;
 
 namespace RegistarApi.Controllers
 {
+    [Authorize]
     [Route("api/Registar")]
+    
     [ApiController]
     public class RegistarController : ControllerBase
     {

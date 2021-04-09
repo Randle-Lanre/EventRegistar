@@ -3,6 +3,8 @@ import { FormBuilder, Validators } from '@angular/forms';
 //import { Registar } from '../Services/registar';
 import { RegistarServiceService } from '../Services/registar-service.service';
 import { ToastrService } from 'ngx-toastr';
+//TODO: testing ODIC
+//import { OidcClientNotification, OidcSecurityService, PublicConfiguration } from 'angular-auth-oidc-client';
 
 @Component({
   selector: 'app-registration-form',
@@ -13,7 +15,9 @@ export class RegistrationFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private registarService: RegistarServiceService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+
+
   ) {}
 
   userRegistrationForm = this.fb.group({
@@ -44,5 +48,10 @@ export class RegistrationFormComponent implements OnInit {
   //    this.
   //  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+
+  }
+
+
+
 }

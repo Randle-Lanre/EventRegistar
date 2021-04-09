@@ -4,11 +4,16 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { Registar } from './registar';
 import { Participants } from './participants';
+// import { OidcSecurityService} from 'angular-auth-oidc-client'
+
+
+// const token = this.oidcSecurityService.getToken();
 
 
 const httpOptions = {
   headers: new HttpHeaders({
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
+
   })
 }
 
@@ -16,13 +21,14 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class RegistarServiceService {
-readonly apiUrl = 'https://localhost:44309/api/Registar';
+readonly apiUrl = 'https://localhost:6001/api/Registar';
 
 registrationInfo: Registar
 registrationResults: Registar[]
 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient ) { }
+
 
 
 

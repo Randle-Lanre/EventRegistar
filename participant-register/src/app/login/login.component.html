@@ -1,0 +1,30 @@
+<p>login works!</p>
+<!-- [formGroup]="userRegistrationForm" (ngSubmit)="onSubmit()" -->
+
+<div class="conatiner position-absolute top-50 start-50 translate-middle ">
+  <form  class="row g-3 "  >
+      <div class="row g-3 pb-5">
+          <div class="col">
+              <input type="text" formControlName="UserName"  class="form-control" placeholder="UserName" aria-label="Username" required>
+
+          </div>
+
+          <div class="col">
+              <input type="password" formControlName="Password" class="form-control" placeholder="Password" required>
+          </div>
+
+      </div>
+
+      <div class="col-12 pb-4">
+          <input type="text" formControlName="ParticipantComment" class="form-control" placeholder="leave a comment about the class" aria-label="leave a comment about the class" required>
+      </div>
+
+      <div class="d-grid gap-2 col-6 mx-auto">
+          <button class="btn btn-outline-primary btn-lg" (click)="login" >Login</button>
+          <button class="btn btn-outline-danger btn-lg" (click)="logout" >Logout</button>
+          <!-- <button class="btn btn-primary" type="button" routerLink="/registerlist"> &#8595; list</button> -->
+      </div>
+
+
+  </form>
+</div>

@@ -10,12 +10,15 @@ import { RegistrationFormComponent } from './registration-form/registration-form
 import { RegisterlistComponent } from './registerlist/registerlist.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { LoginComponent } from './login/login.component';
+// import { AuthConfigModule } from './auth/auth-config.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegistrationFormComponent,
     RegisterlistComponent,
+    LoginComponent,
 
   ],
   imports: [
@@ -27,6 +30,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     ToastrModule.forRoot({
     }),
     FontAwesomeModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

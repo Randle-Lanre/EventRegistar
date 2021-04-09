@@ -5,13 +5,16 @@ import { Observable } from 'rxjs';
 import { faUserMinus } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
 
+
+
+
 @Component({
   selector: 'app-registerlist',
   templateUrl: './registerlist.component.html',
   styleUrls: ['./registerlist.component.css'],
 })
 export class RegisterlistComponent implements OnInit {
-  // TODO: use a different type to fecth from Db, change in service also
+  // TODO: completed
 
   participants: Participants;
   faUsers = faUserMinus;
@@ -19,11 +22,13 @@ export class RegisterlistComponent implements OnInit {
 
   constructor(
     public registarService: RegistarServiceService,
-    private toaster: ToastrService
+    private toaster: ToastrService,
+    
   ) {}
 
   ngOnInit(): void {
     this.registarService.getListOfParticipants();
+
     console.log(this.registarService.getListOfParticipants());
     // this.listAllParticipants();
    // this.numbering;
