@@ -22,6 +22,7 @@ using IdentityServer4.AccessTokenValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using RegistarApi.Entities;
 using RegistarApi.Helpers;
+using RegistarApi.Services;
 
 namespace RegistarApi
 {
@@ -44,6 +45,8 @@ namespace RegistarApi
               db.UseSqlServer(Configuration.GetConnectionString("EventRegistarDbContext")));
 
           services.AddCors();
+          
+          
           
             
             
@@ -99,6 +102,7 @@ namespace RegistarApi
             
             //strongly typed app settings 
             var appSettingsSection = Configuration.GetSection("AppSettings");
+            services.Configure<AppSettings>(appSettingsSection);
             
             //jwt config
             var appSettings = appSettingsSection.Get<AppSettings>();
@@ -136,6 +140,8 @@ namespace RegistarApi
             {
                 c.SwaggerDoc("v1", new OpenApiInfo {Title = "RegistarApi", Version = "v1"});
             });
+            //configure DI for application services 
+            services.AddScoped<IUserService, UserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -162,7 +168,7 @@ namespace RegistarApi
             app.UseCors(x => x.SetIsOriginAllowed(origin => true).AllowAnyHeader().AllowAnyMethod().AllowCredentials());
             // app.UseCors("ApiPolicy");
             // app.UseHttpsRedirection();
-            // app.UseAuthentication();
+            app.UseAuthentication();
             
 
 

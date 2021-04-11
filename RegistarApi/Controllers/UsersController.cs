@@ -12,7 +12,7 @@ using RegistarApi.Services;
 namespace RegistarApi.Controllers
 {
     [Authorize]
-    [Route("api/[controller]")]
+    [Route("api/users")]
     [ApiController]
     public class UsersController : ControllerBase
     {
@@ -22,7 +22,7 @@ namespace RegistarApi.Controllers
             _userService = userService;
         }
 
-
+        [AllowAnonymous]
         [HttpPost("authenticate")]
         public IActionResult Authenticate([FromBody] AuthenticateRequest model)
         {

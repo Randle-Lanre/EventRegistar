@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using RegistarApi.Entities;
 using RegistarApi.Model;
 using Xunit;
 

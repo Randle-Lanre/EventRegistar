@@ -16,13 +16,13 @@ namespace RegistarApi.Services
 {
     public class UserService : IUserService
     {
-        private readonly ApplicationDbContext _context;
+        private  ApplicationDbContext _context;
         private readonly AppSettings _appSettings;
 
-        public UserService(ApplicationDbContext context, AppSettings appSettings)
+        public UserService(ApplicationDbContext context, IOptions<AppSettings> appSettings)
         {
             _context = context;
-            _appSettings = appSettings;
+            _appSettings = appSettings.Value;
 
         }
         
