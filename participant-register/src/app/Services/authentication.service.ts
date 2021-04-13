@@ -41,6 +41,13 @@ export class AuthenticationService {
       );
   }
 
+  logout() {
+    this.http.post<any>(`${this.apiUrl}/users/revoke-token`, {}, { withCredentials: true }).subscribe();
+    this.stopRefreshTokenTimer();
+    this.userSubject.next(null);
+    this.router.navigate(['/login']);
+}
+
   refreshToken() {
     return this.http
       .post<any>(
