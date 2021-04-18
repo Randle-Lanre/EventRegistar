@@ -6,8 +6,8 @@ namespace RegistarApi.Model
 {
     public class ApplicationDbContext : DbContext
     {
-        //removed DbContextOptions<ApplicationDbContext>
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options): base(options)
+        //remove this to use a non generic form so prevent test from failing DbContextOptions<ApplicationDbContext>
+        public ApplicationDbContext(DbContextOptions options): base(options)
         {
             
             

@@ -49,56 +49,7 @@ namespace RegistarApi
           
           
             
-            
-            // services.AddCors(options =>
-            // {
-            //    // options.DefaultPolicyName = "ApiPolicy";
-            //     
-            //     options.AddPolicy("ApiPolicy",
-            //
-            //
-            //
-            //         builder =>
-            //         {
-            //             builder.WithOrigins("http://localhost:4200", "http://www.localhost:4200").AllowAnyHeader()
-            //                 .WithMethods("GET", "POST", "DELETE", "PUT");
-            //             
-            //         }
-            //         );
-            // }
-            //     
-            //    );
-            // services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme).AddIdentityServerAuthentication(
-            //
-            //     options =>
-            //     {
-            //         options.Authority = "https://localhost:5001";
-            //         options.ApiName = "RegistarApi";
-            //         options.ApiSecret = "secret";
-            //     }
-            //     );
-            //services.AddAuthentication("Bearer").AddJwtBearer("Bearer", options =>
-            //{
-                
-            //    options.Authority = "https://localhost:5001";
-            //    options.TokenValidationParameters = new TokenValidationParameters
-            //    {
-            //        ValidateAudience = false
-            //    };
-            //});
-
-            //services.AddAuthorization(options =>
-            //{
-              
-            //    options.AddPolicy("ApiPolicy",  policy =>
-            //    {
-            //        policy.RequireAuthenticatedUser();
-            //        policy.RequireClaim("scope", "api11");
-                    
-                   
-            //    });
-
-            //});
+      
             
             //strongly typed app settings 
             var appSettingsSection = Configuration.GetSection("AppSettings");

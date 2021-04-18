@@ -7,6 +7,7 @@ import { map } from 'rxjs/operators';
 //TODO: in prod environment, update api url and add it to security
 import { User } from './user';
 
+
 @Injectable({
   providedIn: 'root',
 })
@@ -84,3 +85,4 @@ export class AuthenticationService {
     clearTimeout(this.refreshTokenTimeout);
   }
 }
+

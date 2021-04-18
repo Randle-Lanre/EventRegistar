@@ -28,6 +28,7 @@ namespace Tests
                 });
             }
 
+            // var dbContext = new ApplicationDbContext(builder.Options);
             var dbContext = new ApplicationDbContext(builder.Options);
             if (_useSqlite)
             {
