@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {OAuthService} from 'angular-oauth2-oidc';
-import {authCodeFlowConfig } from '../config/authCodeFlowConfig';
-import { Router} from '@angular/router';
+import { Router, ActivatedRoute} from '@angular/router';
+import { FormBuilder, FormGroup, Validators  } from '@angular/forms';
+import { first} from 'rxjs/operators';
+import {AuthenticationService} from '../Services/authentication.service';
+
 
 @Component({
   selector: 'app-login',
@@ -10,38 +12,58 @@ import { Router} from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  claims;
-  constructor( private oauthservice: OAuthService, private router: Router) { }
+  loginForm: FormGroup;
+  loading = false;
+  submitted = false;
+  returnUrl: string;
+  error = '';
+  constructor(  private formBuilder: FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router,
+    private authenticationService: AuthenticationService) {
+      // redirect to home if already logged in
+      if (this.authenticationService.userValue) {
+        this.router.navigate(['/']);
+    }
+    }
 
   ngOnInit(): void {
-    this.configSso();
+    this.loginForm = this.formBuilder.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required]
+  });
+
+  // get return url from route parameters or default to '/'
+  this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
-  configSso(){
-    this.oauthservice.configure(authCodeFlowConfig);
-    this.oauthservice.loadDiscoveryDocumentAndTryLogin();
-  }
 
-  login(){
-    console.log('login');
-    this.oauthservice.setupAutomaticSilentRefresh();
-    this.oauthservice.initCodeFlow();
+    // convenience getter for easy access to form fields
+    get f() { return this.loginForm.controls; }
 
-  }
+    onSubmit() {
+        this.submitted = true;
 
-  logout(){
-    console.log('logout');
-    this.oauthservice.logOut();
+        // stop here if form is invalid
+        if (this.loginForm.invalid) {
+            return;
+        }
 
-  }
-
-  get token(){
-    this.claims = this.oauthservice.getIdentityClaims();
-    if(this.claims){
-      console.log('---login claims---', this.claims);
-      this.router.navigateByUrl('form');
+        this.loading = true;
+        this.authenticationService.login(this.f.username.value, this.f.password.value)
+            .pipe(first())
+            .subscribe({
+                next: () => {
+                    this.router.navigate([this.returnUrl]);
+                },
+                error: error => {
+                    this.error = error;
+                    this.loading = false;
+                }
+            });
     }
-    return this.claims ? this.claims : null
-  }
+
+
+
 
 }

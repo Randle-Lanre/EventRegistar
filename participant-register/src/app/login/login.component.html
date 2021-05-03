@@ -1,30 +1,32 @@
-<p>login works!</p>
-<!-- [formGroup]="userRegistrationForm" (ngSubmit)="onSubmit()" -->
-
-<div class="conatiner position-absolute top-50 start-50 translate-middle ">
-  <form  class="row g-3 "  >
-      <div class="row g-3 pb-5">
-          <div class="col">
-              <input type="text" formControlName="UserName"  class="form-control" placeholder="UserName" aria-label="Username" required>
-
-          </div>
-
-          <div class="col">
-              <input type="password" formControlName="Password" class="form-control" placeholder="Password" required>
-          </div>
-
+﻿<div class="col-md-6 offset-md-3 mt-5">
+  <div class="alert alert-info">
+      Username: test<br />
+      Password: test
+  </div>
+  <div class="card">
+      <h4 class="card-header">Angular 9 JWT Auth with Refresh Tokens</h4>
+      <div class="card-body">
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+              <div class="form-group">
+                  <label for="username">Username</label>
+                  <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                  <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                      <div *ngIf="f.username.errors.required">Username is required</div>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label for="password">Password</label>
+                  <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                  <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                      <div *ngIf="f.password.errors.required">Password is required</div>
+                  </div>
+              </div>
+              <button [disabled]="loading" class="btn btn-primary">
+                  <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                  Login
+              </button>
+              <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+          </form>
       </div>
-
-      <div class="col-12 pb-4">
-          <input type="text" formControlName="ParticipantComment" class="form-control" placeholder="leave a comment about the class" aria-label="leave a comment about the class" required>
-      </div>
-
-      <div class="d-grid gap-2 col-6 mx-auto">
-          <button class="btn btn-outline-primary btn-lg" (click)="login" >Login</button>
-          <button class="btn btn-outline-danger btn-lg" (click)="logout" >Logout</button>
-          <!-- <button class="btn btn-primary" type="button" routerLink="/registerlist"> &#8595; list</button> -->
-      </div>
-
-
-  </form>
+  </div>
 </div>
